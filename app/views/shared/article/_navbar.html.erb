@@ -1,0 +1,41 @@
+<div class="print:hidden bg-white/[0.95] px-4 sm:px-8 fixed w-full z-[500] top-0">
+  <nav class="py-4 md:py-4" aria-label="Global">
+    <div class="flex items-center justify-between">
+      <div class="">
+        <%= link_to editors_binder_url(@binder), class: "btn_rv btn_bs" do %>
+          <span class="">
+            <%= lucide_icon('arrow-left', 'class': 'size-5') %>
+          </span>
+        <% end %>
+      </div>
+      <div class="">
+        <div class="flex items-center align-middle justify-right space-x-4">
+          <div class="">
+            <span id="pusher-status" data-editor-target="indicator" class="ml-2 text-sm text-gray-400"></span>
+          </div>
+          <div data-turbo="false" class="flex items-center align-middle">
+            <label id="previewDraft" class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" 
+                     data-action="click->editor#toggle" 
+                     class="sr-only peer">
+              <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 rounded-full peer 
+                          peer-checked:after:translate-x-full peer-checked:after:border-white 
+                          after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                          after:bg-white after:border-gray-300 after:border after:rounded-full 
+                          after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-400">
+              </div>
+              <span class="ml-2 text-sm font-medium text-gray-800">
+                <%= lucide_icon('eye', class: 'size-5') %>
+              </span>
+            </label>
+          </div>
+          <div class="">
+            <%= link_to editors_binder_article_settings_path(@binder, @article, parent_id: @binder.uid, post_id: @article.uid), data: { turbo_frame: "modal" }, class: "flex items-center space-x-1 font-semibold hover:underline" do %>
+              <%= lucide_icon('ellipsis', class: 'size-5') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

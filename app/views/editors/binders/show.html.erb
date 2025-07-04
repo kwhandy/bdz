@@ -1,0 +1,44 @@
+<% content_for :head do %>
+    <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<div class="justify-evenly flex flex-row">
+    <div class="min-w-[0px] lg:min-w-[728px] lg:max-w-[728px] grow shrink basis-auto block min-h-[100vh] mx-2 px-2 sm:px-0">
+        <div class="flex justify-center">
+            <div class="min-w-[0px] max-w-[680px] w-full sm:mx-8">
+                <div class="">
+                    <div class="header-tabs">
+                        <div class="flex align-middle items-center space-x-1.5">
+                            <span class="font-semibold text-xl sm:text-2xl">
+                                <%= @binder.title.blank? ? "Untitled" : @binder.title %>
+                            </span>
+                            <span class="text-xs">
+                                <%= binder_status(@binder.status) %>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div data-controller="empty" data-empty-hide-class="hidden" class="mt-4">
+                            <div data-empty-target="emptyMessage" class="hidden">
+                                <%= render "editors/binders/articles/empty" %>
+                            </div>
+                            <div class="sm:space-y-2">
+                                <div class="">
+                                    <%= turbo_frame_tag "articles", data: { empty_target: "list" }, src: editors_binder_articles_url(binder_id: @binder, format: :turbo_stream, page: params[:page]), loading: "lazy", class: "space-y-2" do %>
+                                        <div class="space-y-2" id="articles_placeholder">
+                                            <%= render "editors/binders/articles/placeholder" %>
+                                        </div>
+                                    <% end %>
+                                    <%= turbo_frame_tag "articles_pagination" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lg:min-w-[352px] lg:max-w-[352px] xl:min-w-[368px] xl:max-w-[368px] hidden md:block">
+
+    </div>
+</div>

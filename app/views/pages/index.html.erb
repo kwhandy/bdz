@@ -1,0 +1,48 @@
+<% content_for :head do %>
+    <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<div class="justify-evenly flex flex-row">
+    <div class="min-w-[0px] lg:min-w-[728px] lg:max-w-[728px] grow shrink basis-auto block min-h-[100vh] mx-2 px-2 sm:px-0">
+        <div class="flex justify-center">
+            <div class="min-w-[0px] max-w-[680px] w-full sm:mx-8">
+                <% if @binder.present? %>
+                <div class="space-y-6">
+                    <div class="header-tabs">
+                        <span class="font-semibold text-2xl sm:text-3xl">
+                            <%= @binder.title.blank? ? "Untitled" : @binder.title %>
+                        </span>
+                    </div>
+                    <div class="">
+                        <div data-controller="empty" data-empty-hide-class="hidden" class="mt-4">
+                            <div data-empty-target="emptyMessage" class="hidden">
+                                <%= render "articles/empty" %>
+                            </div>
+                            <div class="sm:space-y-2">
+                                <div class="">
+                                    <%= turbo_frame_tag "articles", data: { empty_target: "list" }, src: articles_url(binder_id: @binder, format: :turbo_stream, page: params[:page]), loading: "lazy", class: "space-y-2" do %>
+                                        <div class="space-y-2" id="articles_placeholder">
+                                            <%= render "articles/placeholder" %>
+                                        </div>
+                                    <% end %>
+                                    <%= turbo_frame_tag "articles_pagination" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% else %>
+                <div class="flex flex-col items-center justify-center py-16 text-center">
+                    <%= lucide_icon('book-dashed', class: 'mx-auto mb-4 h-12 w-12 text-gray-300') %>
+                    <p class="text-lg font-semibold mb-2">No content</p>
+                    <p class="text-sm text-gray-600">Please contact support for any infos.</p>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div class="lg:min-w-[352px] lg:max-w-[352px] xl:min-w-[368px] xl:max-w-[368px] hidden md:block">
+
+    </div>
+</div>

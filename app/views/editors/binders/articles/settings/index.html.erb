@@ -1,0 +1,74 @@
+<%= render Shared::ModalComponent.new(advance_history: false, auto_close: false, close_button: false) do %>
+    <div class="h-dvh sm:h-fit w-full sm:w-96">
+        <%= turbo_frame_tag "sL_#{@article.uid}" do %>
+            <div class="space-y-6">
+                <div class="">
+                    <%= content_tag "button",
+                        type: "button",
+                        aria: { label: "close" },
+                        class: "btn_rv btn_bs",
+                        data: { action: "modal#hideModal" } do %>
+                        <%= lucide_icon('x', class: 'size-5') %>
+                    <% end %>
+                </div>
+                <div data-controller="pusher" data-pusher-sync-url-value="<%= editors_binder_article_path(@binder, @article) %>" data-pusher-clean-url="<%= edit_editors_binder_article_path(@binder, @article) %>" data-pusher-draft-key-value="<%= @article.draft_key %>" class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div class="">
+                            <p class="text-2xl font-bold">Settings</p>
+                        </div>
+                        <div data-controller="selector" class="">
+                            <div data-selector-target="skeleton" class="animate-pulse">
+                                <div class="h-8 w-28 bg-gray-200 rounded"></div>
+                            </div>
+                            <div data-selector-target="content" data-controller="visible" data-visible-url-value="<%= editors_binder_article_visible_path(@binder, @article) %>" data-visible-current-value="<%= @article.status %>" data-visible-form-scope-value="article" class="hidden">
+                                <select data-pusher-target="visibility" data-visible-target="input" data-field="status" data-action="change->visible#changeStatus" class="block w-full py-1.5 rounded-md border-transparent bg-gray-100 focus:border-transparent focus:ring-transparent text-sm capitalize">
+                                    <% Article.statuses.keys.each do |status| %>
+                                        <option value="<%= status %>" <%= 'selected' if @article.status == status %>>
+                                            <%= editor_article_settings_status(status) %>
+                                        </option>
+                                    <% end %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="space-y-4">
+                            <div class="">
+                                <div class="flex items-center justify-between">
+                                    <div class="">
+                                        <button data-pusher-target="commit" data-action="click->pusher#syncToServer" class="text-blue-700 hover:text-purple-700 disabled:text-gray-600 underline hover:no-underline disabled:no-underline font-normal cursor-pointer disabled:cursor-not-allowed"></button>
+                                    </div>
+                                    <div class="">
+                                        <span data-pusher-target="message" data-last-update="<%= @article.content_sync_time.iso8601 %>" class="text-sm text-gray-600"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="">
+                                    <%= link_to edit_editors_binder_article_filename_path, data: { turbo_frame: "sL_#{@article.uid}"}, class: "flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white px-4 py-2.5 text-sm shadow-sm hover:border-gray-200" do %>
+                                        <p class="text-lg font-semibold text-gray-800">Filename</p>
+                                    <% end %>
+                                </div>
+                                <div class="">
+                                    <%= link_to editors_binder_article_delete_path(@binder, @article), data: { turbo_frame: "sL_#{@article.uid}"}, class: "flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white px-4 py-2.5 text-sm shadow-sm hover:border-gray-200" do %>
+                                        <p class="text-lg font-semibold text-gray-800">Delete</p>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="">
+                                <p class="text-sm text-gray-600">Issue with local draft?</p>
+                            </div>
+                            <div class="">
+                                <button data-pusher-target="cleaner" data-action="click->pusher#deleteDraft" class="text-sm text-blue-700 hover:text-purple-700 disabled:text-gray-600 underline hover:no-underline disabled:no-underline font-normal cursor-pointer disabled:cursor-not-allowed">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

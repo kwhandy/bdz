@@ -1,0 +1,19 @@
+<%= form_with model: binder, url: editors_binders_path, method: :post, id: "new_binder" do |f| %>
+    <div class="w-full space-y-4">
+        <div class="space-y-4"> 
+            <div class="space-y-1">
+                <%= f.label :title, "Title", class: "block text-sm font-medium leading-6 text-gray-800" %>
+                <div class="bg-gray-100 rounded-md py-2 px-3 border border-transparent focus-within:bg-white focus-within:border-gray-800 ">
+                    <%= f.text_field :title, class: "w-full bg-transparent border-none p-0 focus:ring-0 focus:outline-0" %>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-gray-800" %>
+                <div class="bg-gray-100 rounded-md py-2 px-3 border border-transparent focus-within:bg-white focus-within:border-gray-800 ">
+                    <%= f.text_area :description, data: { controller: "textarea-autogrow" }, class: "resize-none block w-full bg-transparent border-none p-0 focus:ring-0 focus:outline-0" %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

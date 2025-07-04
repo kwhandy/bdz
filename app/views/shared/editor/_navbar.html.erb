@@ -1,0 +1,39 @@
+<div class="bg-white px-4 sm:px-8 fixed w-full z-[500] top-0">
+    <nav class="py-4 md:py-4" aria-label="Global">
+      <div class="flex items-center justify-between">
+        <div class="">
+          <%= link_to root_url, class: "flex-none text-xl font-semibold" do %>
+            Editor
+          <% end %>
+        </div>
+        <div class="flex items-center align-middle justify-right space-x-2">
+          <div class="">
+            <%= link_to editors_path, class: "btn btn_help" do %>
+              <div class="flex items-center align-middle space-x-2">
+                <div class="">
+                  <%= lucide_icon('headset', 'class': 'size-5') %>
+                </div>
+                <div class="text-sm font-semibold">
+                  Help
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="">
+            <%= link_to new_editors_binder_path, data: { turbo_frame: "modal" }, class: "" do %>
+              <div class="px-3 py-1.5 font-semibold text-sm text-white shadow-sm rounded-full bg-blue-600 hover:bg-blue-500 hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300">
+                <span class="flex items-center space-x-2">
+                  <span class="">
+                      <%= lucide_icon('notebook-pen', 'class': 'size-4') %>
+                  </span>
+                  <span class="">
+                      Binder
+                  </span>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div>

@@ -1,0 +1,21 @@
+<%= turbo_stream.remove("articles_placeholder") %>
+
+<%= turbo_stream_action_tag(
+  "append",
+  target: "articles",
+  template: %(#{ render partial: "editors/binders/articles/article", collection: @articles }) 
+) %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "articles_pagination" do %>
+    <%= turbo_frame_tag "articles_pagination", src: editors_binder_articles_url(@binder, page: @pagy.next, format: :turbo_stream), loading: "lazy" do %>
+        <div class="space-y-2 mt-2">
+            <% 3.times do %>
+                <%= render "editors/binders/articles/placeholder" %>
+            <% end %>
+        </div>
+    <% end %>
+  <% end %>
+<% else %> 
+  <%= turbo_stream.remove "articles_pagination" %>
+<% end %> 

@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "sL_#{@article.uid}" do %>
+<div class="space-y-6">
+    <div class="">
+        <%= link_to editors_binder_article_settings_path(@binder, @article), data: { turbo_frame: "sL_#{@article.uid}"}, class: "btn_rv btn_bs" do %>
+            <%= inline_svg_tag('ui/icons/back.svg', class: 'size-4 stroke-2', aria: true, title: 'Close') %>
+        <% end %>
+    </div>
+    <div class="space-y-4">
+        <div class="">
+            <p class="text-2xl font-bold">Visibility</p>
+        </div>
+        <div class="">
+            <%= turbo_frame_tag "vB_#{@article.uid}" do %>
+            <div data-controller="visible" data-visible-url-value="<%= editors_binder_article_visible_path(@binder, @article) %>" data-visible-current-value="<%= @article.status %>">
+                <select data-visible-target="input" data-action="change->visible#changeStatus" class="block w-full py-1.5 rounded-md border-transparent bg-gray-100 focus:border-transparent focus:ring-transparent text-sm">
+                    <% Article.statuses.keys.each do |status| %>
+                        <option value="<%= status %>" <%= 'selected' if @article.status == status %>>
+                            <%= status.humanize %>
+                        </option>
+                    <% end %>
+                </select>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>

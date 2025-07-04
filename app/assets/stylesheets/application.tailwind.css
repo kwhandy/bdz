@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+        scrollbar-gutter: stable;
+    }
+
+    button .enable-submit {
+        display: initial;
+    }
+    
+    button .show-spinner {
+        display: none;
+    }
+    
+    button[disabled] .enable-submit {
+        display: none;
+    }
+    
+    button[disabled] .show-spinner {
+        display: initial;
+    }
+
+    p[contenteditable].editor-container:empty:before {
+        content: attr(placeholder);
+        color: #aaa;
+        pointer-events: none;
+    }
+
+    /* APPLY CUSTOM STYLE */
+
+    .btn {
+        @apply inline-flex items-center justify-center align-middle text-sm leading-6 border border-transparent box-border no-underline cursor-pointer whitespace-nowrap font-semibold px-3.5 py-1.5;
+    }
+
+    .btn_rv {
+        @apply inline-flex items-center justify-center align-middle text-sm leading-4 border border-transparent rounded-md box-border no-underline cursor-pointer whitespace-nowrap font-semibold p-1.5;
+    }
+
+    .btn_help {
+        @apply bg-blue-50 text-gray-700 hover:bg-blue-100 rounded-3xl;
+    }
+    .btn_bp {
+        @apply bg-clip-border bg-origin-border text-white bg-blue-500 hover:bg-blue-400 hover:cursor-pointer rounded-3xl;
+    }
+    .btn_bs {
+        @apply bg-clip-border bg-origin-border text-gray-800 bg-gray-100 border-transparent hover:bg-gray-50 hover:border-gray-50 rounded-full;
+    }
+}

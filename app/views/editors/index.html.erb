@@ -1,0 +1,31 @@
+<% content_for :head do %>
+    <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<div class="justify-evenly flex flex-row">
+    <div class="min-w-[0px] lg:min-w-[728px] lg:max-w-[728px] grow shrink basis-auto block min-h-[100vh]">
+        <div class="flex justify-center">
+            <div class="min-w-[0px] max-w-[680px] w-full px-4 sm:px-8">
+                <div class="">
+                    <div data-controller="empty" data-empty-hide-class="hidden" class="mt-4">
+                        <div data-empty-target="emptyMessage" class="hidden">
+                            <%= render "editors/binders/empty" %>
+                        </div>
+                        <div class="sm:space-y-2">
+                            <div class="">
+                                <%= turbo_frame_tag "binders", data: { empty_target: "list" }, src: editors_binders_url(format: :turbo_stream, page: params[:page]), loading: "lazy", class: "space-y-2" do %>
+                                    <div class="space-y-2" id="binders_placeholder">
+                                        <%= render "editors/binders/placeholder" %>
+                                    </div>
+                                <% end %>
+                                <%= turbo_frame_tag "binders_pagination" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lg:min-w-[352px] lg:max-w-[352px] xl:min-w-[368px] xl:max-w-[368px] hidden md:block">
+    </div>
+</div>

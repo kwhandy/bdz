@@ -1,0 +1,40 @@
+<%= render Shared::ModalComponent.new(advance_history: false, auto_close: false, close_button: false) do %>
+    <div class="h-dvh w-full sm:h-fit sm:w-80">
+        <%= turbo_frame_tag "enb" do %>
+            <div class="space-y-6">
+                <div class="flex justify-between items-center">
+                    <div class="">
+                        <%= content_tag "button",
+                            type: "button",
+                            aria: { label: "close" },
+                            class: "btn_rv btn_bs",
+                            data: { action: "modal#hideModal" } do %>
+                                <%= lucide_icon('x', class: 'size-4') %>
+                        <% end %>
+                    </div>
+                    <div class="">
+                        <%= content_tag "button", form: "new_binder", class: "hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-300 rounded-full bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" do %>
+                            <span class="enable-submit">Create</span>
+                            <span class="show-spinner">
+                                Wait..
+                            </span>
+                        <% end %>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <div class="">
+                            <p class="text-lg font-bold">New Binder</p>
+                        </div>
+                        <div class="">
+                            <%= turbo_frame_tag "enbf" do %>
+                                <%= render partial: "editors/binders/form", locals: { binder: @binder } %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

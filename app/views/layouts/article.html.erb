@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="box-border">
+  <head>
+    <%= render "shared/head" %>
+  </head>
+
+  <body class="">
+    <% if Rails.env.production? %>
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= Rails.application.credentials.dig(:monitor, :google_gtm) %>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <% end %>
+    
+    <div data-controller="editor" data-editor-draft-key-value="<%= @article.draft_key %>" data-editor-save-interval-value="500">
+      <div class="">
+        <div class="">
+          <%= turbo_frame_tag "flash" do %>
+            <%#= render 'shared/flash' %>
+          <% end %>
+        </div>
+
+        <%= render 'shared/article/navbar' %>
+
+        <div class="mt-16 sm:mt-20 print:mt-0 mb-12">
+          <div class="max-w-[1336px] m-auto block">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      
+      <%= turbo_frame_tag "modal" %>
+    </div>
+  </body>
+</html>

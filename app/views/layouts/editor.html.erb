@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="box-border">
+  <head>
+    <%= render "shared/head" %>
+  </head>
+
+  <body class="">
+    <% if Rails.env.production? %>
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= Rails.application.credentials.dig(:monitor, :google_gtm) %>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <% end %>
+    
+    <div class="">
+      <div class="">
+        <%= render 'shared/editor/navbar' %>
+
+        <div class="mt-20 min-h-screen">
+          <div class="max-w-[1336px] m-auto block">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= turbo_frame_tag "modal" %>
+  </body>
+</html>

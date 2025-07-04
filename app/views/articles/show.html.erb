@@ -1,0 +1,27 @@
+<div data-controller="viewer" data-viewer-post-id-value="<%= @article.uid %>" data-viewer-raw-key-value="<%= @article.raw_key %>" class="mx-2 px-2 sm:px-0 sm:mx-auto max-w-2xl">
+    <article data-viewer-target="content" class="hidden md:text-xl print:text-2xl prose prose-lg print:prose-base max-w-none min-h-[300px] outline-none"></article>
+    <article data-viewer-target="skeleton" class="animate-pulse space-y-8 mt-8">
+      <div class="">
+        <div class="h-10 w-3/4 bg-gray-200 rounded mb-2"></div>
+        <div class="h-8 w-1/2 bg-gray-200 rounded mb-6"></div>
+      </div>
+      <div class="space-y-4">
+        <% 3.times do %>
+          <div class="space-y-3">
+            <div class="h-5 w-full bg-gray-200 rounded"></div>
+            <div class="h-5 w-full bg-gray-200 rounded"></div>
+            <div class="h-5 w-full bg-gray-200 rounded"></div>
+            <div class="h-5 w-full bg-gray-200 rounded"></div>
+            <div class="h-5 w-full bg-gray-200 rounded"></div>
+          </div>
+        <% end %>
+      </div>
+    </article>
+    <article data-viewer-target="empty" class="hidden">
+      <div class="flex flex-col items-center justify-center py-16 text-center">
+        <%= lucide_icon('book-dashed', class: 'mx-auto mb-4 h-12 w-12 text-gray-300') %>
+        <p class="text-lg font-semibold mb-2">No content</p>
+        <p class="text-sm text-gray-600">Please contact support for infos</p>
+      </div>
+    </article>
+</div>

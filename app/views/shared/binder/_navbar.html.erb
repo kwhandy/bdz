@@ -1,0 +1,58 @@
+<div class="bg-white px-4 sm:px-8 fixed w-full z-[500] top-0">
+    <nav class="py-4 md:py-4" aria-label="Global">
+      <div class="flex items-center justify-between">
+        <div class="">
+          <% if show_in_action?('binders', 'show') %>
+            <%= link_to editors_url, class: "btn_rv btn_bs" do %>
+                <span class="">
+                  <%= lucide_icon('arrow-left', 'class': 'size-5') %>
+                </span>
+            <% end %>
+          <% elsif show_in_action?('settings', 'index') %>
+            <%= link_to editors_binder_path(@binder), class: "btn_rv btn_bs" do %>
+                <span class="">
+                  <%= lucide_icon('arrow-left', 'class': 'size-5') %>
+                </span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="">
+          <% if show_in_action?('binders', 'show') %>
+          <div class="flex items-center align-middle justify-right space-x-2">
+            <div class="">
+              <%= button_to editors_binder_articles_path(binder_id: @binder), data: { turbo_method: "post" }, class: "px-3 py-1.5 font-semibold text-sm text-white shadow-sm rounded-full bg-blue-600 hover:bg-blue-500 hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300" do %>
+                  <span class="enable-submit">
+                    <span class="flex items-center">
+                      <span>
+                        <%= lucide_icon('plus', class: 'size-4') %>
+                      </span>
+                      <span class="px-1.5">
+                        New
+                      </span>
+                    </span>
+                  </span>
+                  <span class="show-spinner">
+                    <span class="flex items-center">
+                      <span>
+                        <%= lucide_icon('plus', class: 'size-4') %>
+                      </span>
+                      <span class="px-1.5">
+                        Wait..
+                      </span>
+                    </span>
+                  </span>
+              <% end %>
+            </div>
+            <div class="">
+              <%= link_to editors_binder_settings_path(@binder), class: "btn_rv btn_bs" do %>
+                <span class="">
+                  <%= lucide_icon('settings', class: 'size-5') %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+</div>

@@ -1,0 +1,13 @@
+<div class="">
+    <div class="hidden print:block print:text-center">
+        <p data-editor-target="caution" class="">
+            Switch to preview mode to show content for print purpose.
+        </p>
+    </div>
+    <div class="print:hidden">
+        <p data-editor-target="content" class="editor-container whitespace-pre-warp break-words text-lg sm:text-xl prose prose-xl max-w-none min-h-[300px] outline-none" data-last-update="<%= article.content_sync_time.iso8601 %>">
+            <%= article.content.gsub(/\n/, '<br/>').html_safe if article.content.present? %>
+        </p>
+    </div>
+</div>
+<article data-editor-target="preview" class="md:text-xl print:text-2xl prose prose-lg print:prose-base max-w-none min-h-[300px] outline-none"></article>

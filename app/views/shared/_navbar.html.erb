@@ -1,0 +1,23 @@
+<div class="bg-white px-4 sm:px-8">
+    <nav class="py-4 md:py-4" aria-label="Global">
+      <div class="flex items-center justify-between">
+        <div class="">
+          <%= link_to root_url, class: "flex align-middle space-x-2" do %>
+            <%= lucide_icon('sticky-note', 'class': 'size-5') %>
+          <% end %>
+        </div>
+        <div class="">
+            <%= link_to editors_path, class: "btn btn_help" do %>
+                <div class="flex items-center align-middle space-x-2">
+                    <div class="">
+                        <%= lucide_icon('headset', 'class': 'size-5') %>
+                    </div>
+                    <div class="text-sm font-semibold">
+                        Help
+                    </div>
+                </div>
+            <% end %>
+        </div>
+      </div>
+    </nav>
+</div>
