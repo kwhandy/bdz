@@ -44,7 +44,7 @@ end
 
 group :development do
   gem 'faker', require: false
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.10'
   gem "web-console"  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rack-mini-profiler', require: false  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'annotate'
